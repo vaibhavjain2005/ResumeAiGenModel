@@ -6,9 +6,9 @@ print("Loading FLAN-T5-Large model...")
 model_path = "jain05vaibhav/flan-t5-fine-tuned-resume-stable"
 tokenizer = T5Tokenizer.from_pretrained(model_path)
 model = T5ForConditionalGeneration.from_pretrained(model_path)
-print("✅ Model loaded successfully!")
+print("Model loaded successfully")
 
-GEMINI_API_KEY = "AIzaSyDy7FQb-PL_2_FP75C6PWtyJjFkdhkfgR4"  
+GEMINI_API_KEY = "GEMINI API KEY "  
 genai.configure(api_key=GEMINI_API_KEY)
 gemini_model = genai.GenerativeModel('gemini-2.5-flash')  
 
