@@ -4,7 +4,7 @@ import json
 
 print("Loading FLAN-T5-Large model...")
 model_path = "jain05vaibhav/flan-t5-fine-tuned-resume-stable"
-tokenizer = T5Tokenizer.from_pretrained(model_path)
+tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-base")
 model = T5ForConditionalGeneration.from_pretrained(model_path)
 print("Model loaded successfully")
 
