@@ -2,7 +2,6 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration
 import google.generativeai as genai
 import json
 
-print("Loading FLAN-T5-Large model...")
 model_path = "jain05vaibhav/flan-t5-resume-further-trained"
 tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-base")
 model = T5ForConditionalGeneration.from_pretrained(model_path)
