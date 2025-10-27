@@ -1998,5 +1998,334 @@
   {
     "input": "Create professional summary: Cybersecurity, 10 years, Security Auditing, Penetration Testing, Incident Response",
     "output": "Results-driven Cybersecurity professional with 10+ years of experience leveraging Security Auditing and Penetration Testing to deliver innovative solutions. Proven track record of improving efficiency and driving business outcomes through technical expertise."
+  },
+  // ---- "Enhance project" examples (16) ----
+  {
+    "input": "Enhance project: B2B SaaS Analytics Platform using Python, Django, React, PostgreSQL",
+    "output": "Engineered scalable B2B analytics platform integrating Python Django backend, React UI, and PostgreSQL database. Created custom reporting engine and real-time dashboards, enabling 1,000+ enterprise users to increase actionable data insights and reduce reporting cycles by 80%."
+  },
+  {
+    "input": "Enhance project: Real-time Fraud Detection System using Spark, Kafka, Scala",
+    "output": "Developed distributed fraud detection pipeline utilizing Apache Spark, Kafka, and Scala to process 20M+ transactions/day. Implemented anomaly scoring and alerting, reducing false positives by 65% and detecting losses 90% faster than legacy systems."
+  },
+  {
+    "input": "Enhance project: eKYC OCR Pipeline using Python, FastAPI, Tesseract",
+    "output": "Built robust eKYC automation using FastAPI and Tesseract OCR for instant document extraction and validation. Enabled seamless digital onboarding and saved 12,000+ manual hours yearly with 99.1% extraction accuracy for global customer submissions."
+  },
+  {
+    "input": "Enhance project: Low-code Workflow Builder using Vue.js, Node.js, MongoDB",
+    "output": "Designed drag-and-drop workflow builder using Vue.js, Node.js backend, and MongoDB. Empowered 500+ non-technical users to automate business processes, cutting operations turnaround time by 60% and reducing IT dependency."
+  },
+  {
+    "input": "Enhance project: Hybrid Cloud Backup Solution using Azure, AWS, Terraform",
+    "output": "Implemented cross-cloud backup automation with Azure, AWS S3, and Terraform infrastructure-as-code. Supported encrypted backups for 10TB+ data with automated failover and 15-minute RTO, safeguarding critical enterprise assets."
+  },
+  {
+    "input": "Enhance project: Predictive Maintenance Dashboard using Power BI, Azure ML, SQL",
+    "output": "Created interactive Power BI dashboards feeding from Azure ML models and SQL warehouse to predict equipment failures. Resulted in $2M annual cost avoidance and 50% reduction in unplanned downtime for manufacturing operations."
+  },
+  {
+    "input": "Enhance project: Medical Image Segmentation Tool using Keras, U-Net, PyQt",
+    "output": "Built desktop tool for medical image segmentation with U-Net model in Keras and PyQt interface. Automated tumor boundary detection across 7 datasets, achieving 91% dice score and improving radiologist throughput by 44%."
+  },
+  {
+    "input": "Enhance project: Inventory Tracker API using Go, gRPC, MySQL",
+    "output": "Developed high-throughput inventory tracking API with Go, gRPC, and MySQL relational backend. Supported 50K+ queries per minute, achieving 99.99% accuracy in stock reconciliation for a national retail chain."
+  },
+  {
+    "input": "Enhance project: Language Learning App using Swift, CoreML, Firebase",
+    "output": "Released iOS app for language learners utilizing Swift, CoreML for voice recognition, and Firebase. Featured adaptive quizzes and speech scoring, raising session retention rate to 75% and reaching 30K+ downloads in 2 months."
+  },
+  {
+    "input": "Enhance project: Secure Messaging Platform using Rust, Libsodium, WebRTC",
+    "output": "Engineered end-to-end encrypted messaging system with Rust backend, Libsodium cryptography, and WebRTC media streaming, enabling 99.7% message delivery reliability and zero recorded security breaches after external audit."
+  },
+  {
+    "input": "Enhance project: ESG Data Aggregator using Python, Airflow, Tableau",
+    "output": "Architected ESG data aggregator with Python pipelines orchestrated by Airflow and automated Tableau publishing, delivering reliable regulatory reports to 200+ clients and reducing compliance reporting cycles by 3 weeks."
+  },
+  {
+    "input": "Enhance project: Cross-Platform AR Experience using Unity, C#, ARKit, ARCore",
+    "output": "Led development of augmented reality (AR) mobile experience in Unity, using C#, ARKit, and ARCore for feature parity on iOS/Android, generating 1M+ interactive sessions and increasing app engagement by 85%."
+  },
+  {
+    "input": "Enhance project: Onboarding Bot using Node.js, Slack API, Google Sheets",
+    "output": "Designed onboarding automation bot using Node.js, Slack API, and Google Sheets integration, managing personalized new-hire checklists and feedback. Reduced HR onboarding load by 55% with up to 400 new hires per quarter handled autonomously."
+  },
+  {
+    "input": "Enhance project: Solar Monitoring System using Arduino, C++, MQTT",
+    "output": "Deployed IoT solar monitoring using Arduino microcontrollers with C++ firmware, MQTT for data relay, and remote dashboards. Detected panel outages in real time, improving maintenance efficiency and capturing an extra 8% power yield annually."
+  },
+  {
+    "input": "Enhance project: HR Analytics Platform using R Shiny, PostgreSQL, D3.js",
+    "output": "Developed interactive HR analytics dashboard with R Shiny front-end, PostgreSQL data warehouse, and D3.js custom visuals, helping HR teams reduce turnover by 17% and inform $3M+ in workforce planning decisions."
+  },
+  {
+    "input": "Enhance project: Asset Allocation Optimizer using Julia, JuMP, Bloomberg API",
+    "output": "Authored portfolio optimization tool in Julia using JuMP solver and Bloomberg financial data, tailoring custom asset mixes to client risk profiles. Increased average portfolio Sharpe Ratio from 0.7 to 1.2 across 200+ managed accounts."
+  },
+
+  // ---- "Rewrite professionally" examples (18) ----
+  {
+    "input": "Rewrite professionally: Deployed microservices using Kubernetes, Docker, Prometheus",
+    "output": "Orchestrated deployment of resilient microservices infrastructure with Kubernetes, Docker, and Prometheus, achieving 99.99% uptime and automated scaling for 20+ services under peak load."
+  },
+  {
+    "input": "Rewrite professionally: Implemented event-driven processing using Kafka, Java, Spring",
+    "output": "Engineered event-driven processing pipeline using Kafka, Java, and Spring Boot that cut system lag by 75% and allowed for real-time analytics on 15 million monthly events."
+  },
+  {
+    "input": "Rewrite professionally: Enhanced user authentication using OAuth2, SSO, LDAP",
+    "output": "Strengthened user authentication with OAuth2 protocols, Single Sign-On integration, and LDAP directory, achieving seamless cross-product login and 100% regulatory compliance."
+  },
+  {
+    "input": "Rewrite professionally: Migrated workloads using AWS EC2, Lambda, CloudFormation",
+    "output": "Managed migration of critical business workloads to AWS, leveraging EC2, Lambda, and automated CloudFormation scripts, which reduced on-premises costs by 64% and improved deployment agility."
+  },
+  {
+    "input": "Rewrite professionally: Automated billing process using Python, REST APIs, Stripe",
+    "output": "Delivered robust billing automation with Python microservices integrating RESTful APIs and Stripe payments. Increased recurring billing accuracy to 99.98% and shortened collection cycles from weeks to hours."
+  },
+  {
+    "input": "Rewrite professionally: Optimized SQL queries using PostgreSQL, CTEs, Indexing",
+    "output": "Rationalized and tuned complex queries for PostgreSQL database using CTEs and advanced indexing, boosting analytics throughput by 7x and reducing ETL latency by 80%."
+  },
+  {
+    "input": "Rewrite professionally: Set up infrastructure as code using Terraform, Ansible, Azure DevOps",
+    "output": "Automated multi-cloud infrastructure provisioning with Terraform, Ansible playbooks, and Azure DevOps pipelines, reducing manual configuration errors to zero and enabling one-click deployments."
+  },
+  {
+    "input": "Rewrite professionally: Built chatbot using Dialogflow, Node.js, Twilio",
+    "output": "Developed conversational chatbot leveraging Dialogflow NLP, Node.js backend, and Twilio SMS integration. Resolved 4,000+ customer requests monthly, improving CSAT by 25%."
+  },
+  {
+    "input": "Rewrite professionally: Improved disaster recovery using AWS S3, Glacier, Route 53",
+    "output": "Implemented robust disaster recovery plan combining AWS S3, Glacier archiving, and Route 53 DNS failovers, establishing RTO of 30 minutes and ensuring business continuity."
+  },
+  {
+    "input": "Rewrite professionally: Conducted A/B testing using Optimizely, Looker, R",
+    "output": "Established rigorous A/B testing program utilizing Optimizely for deployment, analyzed results with Looker dashboards and R modeling, driving a 15% conversion improvement on high-traffic landing pages."
+  },
+  {
+    "input": "Rewrite professionally: Automated security audits using Nessus, Splunk, Python scripts",
+    "output": "Automated security scanning and compliance audits using Nessus, integrated reporting via Splunk dashboards, and Python scripting, uncovering and remediating 230 critical vulnerabilities in two quarters."
+  },
+  {
+    "input": "Rewrite professionally: Managed stakeholder expectations using Gantt charts, weekly standups, Trello",
+    "output": "Facilitated transparent project management with dynamic Gantt charts, structured weekly standups, and Trello workflows, consistently delivering major milestones ahead of deadlines."
+  },
+  {
+    "input": "Rewrite professionally: Refactored legacy UI using Angular, RxJS, SASS",
+    "output": "Modernized and refactored legacy frontend with Angular, RxJS for reactive programming, and SASS for styling, improving maintainability and lifting Lighthouse score to 96/100."
+  },
+  {
+    "input": "Rewrite professionally: Designed cloud architecture using GCP, BigQuery, Pub/Sub",
+    "output": "Architected scalable analytics environment using GCP, BigQuery storage, and Pub/Sub event streaming, allowing for sub-second data refresh over 2TB+ datasets."
+  },
+  {
+    "input": "Rewrite professionally: Enforced CI/CD best practices using CircleCI, Docker, GitLab",
+    "output": "Drove adoption of CI/CD best practices using CircleCI automation, Docker container lifecycle management, and GitLab code review, cutting release lead time from days to mere hours."
+  },
+  {
+    "input": "Rewrite professionally: Boosted test coverage using Jest, Cypress, SonarQube",
+    "output": "Elevated code quality by implementing comprehensive testing frameworks—Jest for unit, Cypress for E2E, and SonarQube analytics—achieving 96% code coverage in three months."
+  },
+  {
+    "input": "Rewrite professionally: Improved mobile experience using React Native, Firebase, Crashlytics",
+    "output": "Enhanced mobile application stability and UX using React Native, live data syncing with Firebase, and proactive crash monitoring with Crashlytics, leading to 80% drop in user-reported bugs."
+  },
+  {
+    "input": "Rewrite professionally: Produced technical blog using Hugo, Netlify, Markdown",
+    "output": "Published and maintained technical blog using Hugo static site generator, deployed via Netlify, with content authored in Markdown—attracting 25K monthly visitors and elevating brand authority."
+  },
+
+  // ---- "Create professional summary" examples (16) ----
+  {
+    "input": "Create professional summary: Data Science, 5 years, Python, Matplotlib, Git",
+    "output": "Analytical Data Science professional with 5 years of experience leveraging Python, Matplotlib, and version control with Git. Delivered actionable insights that accelerated product roadmap development and reduced churn rate by 38%."
+  },
+  {
+    "input": "Create professional summary: Cloud Security, 7 years, AWS, Vault, Okta",
+    "output": "Security-focused cloud technologist with 7 years of expertise across AWS, infrastructure secrets management with Vault, and federated SSO via Okta. Drove internal audit success and maintained zero data breach record."
+  },
+  {
+    "input": "Create professional summary: VR/AR Dev, 3 years, Unity, C#, SteamVR",
+    "output": "Creative VR/AR engineer with 3 years developing immersive experiences using Unity, C#, and SteamVR SDKs. Deployed 10+ commercial VR applications serving education and healthcare sectors."
+  },
+  {
+    "input": "Create professional summary: NoSQL Database Admin, 6 years, Cassandra, MongoDB, ELK",
+    "output": "Performance-driven NoSQL DBA with 6 years optimizing Cassandra and MongoDB clusters, paired with ELK stack analytics. Successfully scaled database infrastructure to 15B+ transactions monthly with zero data loss."
+  },
+  {
+    "input": "Create professional summary: Digital Marketing, 9 years, SEMrush, HubSpot, Google Ads",
+    "output": "Strategic Digital Marketing leader with 9 years maximizing ROI via SEMrush campaigns, HubSpot automation, and Google Ads. Orchestrated omnichannel campaigns that grew quarterly leads by 200%."
+  },
+  {
+    "input": "Create professional summary: Computer Vision, 2 years, OpenCV, Keras, AWS Lambda",
+    "output": "Aspiring Computer Vision developer with 2 years utilizing OpenCV, Keras neural networks, and scalable AWS Lambda deployments. Blended technical innovation with business impact, running image pipelines at scale."
+  },
+  {
+    "input": "Create professional summary: Robotics, 11 years, ROS, C++, LIDAR",
+    "output": "Seasoned Robotics engineer with 11 years leading development in ROS, C++, and LIDAR-based navigation. Spearheaded autonomous robot launches adopted by four Fortune 500 manufacturing plants."
+  },
+  {
+    "input": "Create professional summary: DevOps, 8 years, Jenkins, Docker, Splunk",
+    "output": "Results-oriented DevOps engineer with 8 years building automated CI/CD pipelines in Jenkins, Dockerized microservices deployment, and Splunk observability, achieving 98% incident SLA compliance."
+  },
+  {
+    "input": "Create professional summary: Game Development, 5 years, Unreal Engine, C++, Perforce",
+    "output": "Dynamic Game Developer with 5 years creating AAA-level gameplay using Unreal Engine, C++, and large-scale Perforce collaboration. Drove three shipped titles and mentored a team of 10 mid-level artists and engineers."
+  },
+  {
+    "input": "Create professional summary: Ecommerce Analytics, 4 years, SQL, Tableau, Shopify",
+    "output": "Analytical Ecommerce Analytics specialist with 4 years experience driving growth for Shopify storefronts through SQL querying, sales forecasting, and Tableau dashboards, increasing average order value by 22%."
+  },
+  {
+    "input": "Create professional summary: Health Informatics, 12 years, HL7, FHIR, MySQL",
+    "output": "Veteran Health Informatics architect with 12 years integrating HL7/FHIR standards and MySQL storage, powering 48M secure patient records and facilitating real-time clinical insights for frontline providers."
+  },
+  {
+    "input": "Create professional summary: Product Management, 13 years, Jira, Aha!, Slack",
+    "output": "Visionary Product Manager with 13 years launching B2B SaaS products, orchestrating Agile roadmaps in Jira and Aha!, and building global teams with Slack and remote-first best practices."
+  },
+  {
+    "input": "Create professional summary: QA Automation, 6 years, Selenium, qTest, Mocha",
+    "output": "Meticulous QA Automation Engineer with 6 years leveraging Selenium, Mocha, and qTest for high-velocity test cycles—delivering 8 releases per month with defect escape rate under 0.5%."
+  },
+  {
+    "input": "Create professional summary: Tech Support, 10 years, ServiceNow, Jira, Zoom",
+    "output": "Resourceful Technical Support Engineer with 10 years solving client issues via ServiceNow, Jira ticketing, and Zoom remote sessions. Maintained CSAT above 98% across 12K+ support interactions."
+  },
+  {
+    "input": "Create professional summary: Information Security, 7 years, Splunk, Wireshark, CrowdStrike",
+    "output": "Proactive Information Security consultant with 7 years of experience analyzing network events with Splunk and Wireshark, and deploying CrowdStrike incident response solutions for Fortune 1,000 clients."
+  },
+  {
+    "input": "Create professional summary: Applied AI, 3 years, GPT-4, Llama, Vertex AI",
+    "output": "Forward-looking Applied AI Researcher with 3 years experience deploying GPT-4, Llama family models, and Vertex AI solutions to automate knowledge work and accelerate client value delivery."
+  },
+  {
+    "input": "Enhance project: AI Recommendation Engine using Python, Scikit-learn, Redis",
+    "output": "Engineered personalized recommendation engine using collaborative filtering and content-based algorithms with Python and Scikit-learn. Integrated Redis caching for sub-200ms response times. Increased user engagement by 65% and drove 40% growth in cross-sell revenue through personalized product suggestions for 2M+ users."
+  },
+  {
+    "input": "Enhance project: Microservices Architecture using Go, Docker, Kubernetes",
+    "output": "Architected distributed microservices system using Go with Docker containerization and Kubernetes orchestration. Implemented service mesh with Istio for traffic management and observability. Improved system scalability to handle 50K concurrent requests while reducing latency by 45%."
+  },
+  {
+    "input": "Enhance project: Blockchain Voting System using Solidity, Ethereum, Web3.js",
+    "output": "Developed secure blockchain-based voting platform using Solidity smart contracts on Ethereum network. Implemented Web3.js for frontend integration and IPFS for decentralized storage. Achieved tamper-proof voting with cryptographic verification, processing 100K+ votes with complete transparency and auditability."
+  },
+  {
+    "input": "Enhance project: Video Streaming Platform using Node.js, FFmpeg, AWS S3",
+    "output": "Built scalable video streaming service using Node.js backend with FFmpeg for transcoding and AWS S3 for content delivery. Implemented adaptive bitrate streaming and CDN integration. Delivered smooth playback to 250K+ concurrent viewers with 99.97% uptime and minimal buffering."
+  },
+  {
+    "input": "Enhance project: IoT Monitoring System using MQTT, InfluxDB, Grafana",
+    "output": "Created real-time IoT monitoring solution using MQTT protocol for device communication, InfluxDB for time-series data storage, and Grafana for visualization. Monitored 5,000+ connected devices with automated alerting and anomaly detection. Reduced equipment downtime by 60% through predictive maintenance."
+  },
+  {
+    "input": "Enhance project: Natural Language Chatbot using Rasa, spaCy, FastAPI",
+    "output": "Developed intelligent conversational AI using Rasa framework with spaCy for NLP and FastAPI for backend services. Trained on 50K+ conversation samples with intent recognition and entity extraction. Automated 75% of customer queries with 92% satisfaction rate, handling 10K+ daily interactions."
+  },
+  {
+    "input": "Enhance project: Financial Trading Bot using Python, Pandas, Alpaca API",
+    "output": "Built algorithmic trading system using Python with Pandas for data analysis and Alpaca API for order execution. Implemented technical indicators, backtesting framework, and risk management strategies. Achieved 18% annual returns with Sharpe ratio of 1.8 across diversified portfolio."
+  },
+  {
+    "input": "Enhance project: Computer Vision Pipeline using OpenCV, YOLO, TensorFlow",
+    "output": "Developed real-time object detection system using OpenCV for image processing and YOLO algorithm with TensorFlow backend. Deployed on edge devices for autonomous vehicle applications. Achieved 95% detection accuracy at 30 FPS, identifying 80+ object classes with minimal false positives."
+  },
+  {
+    "input": "Rewrite professionally: Built web application using React, TypeScript, GraphQL",
+    "output": "Architected modern web application leveraging React, TypeScript, and GraphQL that improved page load speed by 70% and enhanced type safety across 50+ components, resulting in 40% reduction in runtime errors"
+  },
+  {
+    "input": "Rewrite professionally: Led team of developers using Agile, JIRA, Git",
+    "output": "Directed cross-functional engineering team of 8 developers implementing Agile methodologies with JIRA and Git workflows, accelerating sprint velocity by 35% and reducing production bugs by 50% through enhanced code review practices"
+  },
+  {
+    "input": "Rewrite professionally: Optimized API performance using Node.js, MongoDB, Redis",
+    "output": "Engineered high-performance API architecture with Node.js, MongoDB indexing, and Redis caching that reduced response times from 800ms to 120ms, supporting 5x traffic growth while decreasing infrastructure costs by 25%"
+  },
+  {
+    "input": "Rewrite professionally: Implemented security features using OAuth, JWT, bcrypt",
+    "output": "Strengthened application security posture by implementing OAuth 2.0 authentication, JWT token management, and bcrypt password hashing, achieving SOC 2 compliance and preventing 100% of credential-based attacks over 12 months"
+  },
+  {
+    "input": "Rewrite professionally: Automated deployment process using Jenkins, Docker, AWS",
+    "output": "Revolutionized deployment pipeline by orchestrating Jenkins CI/CD automation with Docker containerization and AWS infrastructure, reducing deployment time from 4 hours to 15 minutes and eliminating 95% of manual errors"
+  },
+  {
+    "input": "Rewrite professionally: Analyzed user behavior using Google Analytics, SQL, Python",
+    "output": "Conducted comprehensive user behavior analysis leveraging Google Analytics, SQL database queries, and Python data processing, uncovering insights that drove 45% increase in conversion rates and 30% improvement in user retention"
+  },
+  {
+    "input": "Rewrite professionally: Migrated legacy system using Java, Spring Boot, PostgreSQL",
+    "output": "Orchestrated complex legacy system migration to modern Java Spring Boot architecture with PostgreSQL database, achieving zero downtime during transition and improving system performance by 200% while reducing maintenance overhead by 60%"
+  },
+  {
+    "input": "Rewrite professionally: Created documentation using Confluence, Swagger, Markdown",
+    "output": "Established comprehensive technical documentation framework using Confluence for knowledge base, Swagger for API specifications, and Markdown for code documentation, reducing onboarding time for new developers by 50% and improving team knowledge sharing"
+  },
+  {
+    "input": "Rewrite professionally: Refactored codebase using design patterns, SOLID principles, unit tests",
+    "output": "Transformed legacy monolithic codebase by applying design patterns, SOLID principles, and comprehensive unit testing with 85% coverage, reducing technical debt by 70% and increasing code maintainability score from 40 to 92"
+  },
+  {
+    "input": "Rewrite professionally: Integrated payment system using Stripe, PayPal, webhooks",
+    "output": "Seamlessly integrated multi-provider payment gateway supporting Stripe and PayPal with webhook event processing, enabling $2M+ monthly transaction volume with 99.99% payment success rate and PCI DSS compliance"
+  },
+  {
+    "input": "Create professional summary: Full Stack Development, 7 years, Vue.js, Django, PostgreSQL",
+    "output": "Innovative Full Stack Development engineer with 7 years creating scalable web applications using Vue.js, Django, and PostgreSQL. Track record of delivering high-performance solutions that balance user experience with technical excellence, driving 40% improvement in application response times."
+  },
+  {
+    "input": "Create professional summary: Machine Learning, 4 years, Scikit-learn, Keras, AWS",
+    "output": "Data-driven Machine Learning specialist with 4 years developing predictive models using Scikit-learn and Keras deployed on AWS infrastructure. Expertise in transforming complex datasets into actionable insights, achieving 90%+ model accuracy across diverse business applications."
+  },
+  {
+    "input": "Create professional summary: Mobile Development, 6 years, Swift, Kotlin, Firebase",
+    "output": "Creative Mobile Development professional with 6 years crafting native iOS and Android applications using Swift, Kotlin, and Firebase. Known for building intuitive user experiences that drive 4.5+ star ratings and 80% user retention across 500K+ app installations."
+  },
+  {
+    "input": "Create professional summary: Blockchain, 3 years, Solidity, Web3, Smart Contracts",
+    "output": "Forward-thinking Blockchain developer with 3 years specializing in Solidity smart contract development and Web3 integration. Passionate about decentralized technologies, having deployed 30+ production smart contracts managing $5M+ in digital assets with zero security incidents."
+  },
+  {
+    "input": "Create professional summary: Site Reliability Engineering, 8 years, Terraform, Kubernetes, Prometheus",
+    "output": "Reliability-focused Site Reliability Engineering expert with 8 years architecting resilient infrastructure using Terraform, Kubernetes, and Prometheus monitoring. Proven ability to maintain 99.99% uptime for critical systems while optimizing cloud costs by 40% through automation and efficiency improvements."
+  },
+  {
+    "input": "Create professional summary: QA Engineering, 5 years, Selenium, Cypress, Jenkins",
+    "output": "Detail-oriented QA Engineering professional with 5 years building automated testing frameworks using Selenium, Cypress, and Jenkins CI/CD integration. Expert in establishing quality standards that reduced production defects by 75% while accelerating release cycles by 50%."
+  },
+  {
+    "input": "Create professional summary: Data Engineering, 9 years, Spark, Airflow, Snowflake",
+    "output": "Strategic Data Engineering architect with 9 years designing scalable data pipelines using Apache Spark, Airflow orchestration, and Snowflake data warehouse. Specialized in processing petabyte-scale datasets, enabling real-time analytics that drive $10M+ annual revenue impact."
+  },
+  {
+    "input": "Create professional summary: UI/UX Design, 6 years, Figma, Adobe XD, User Research",
+    "output": "User-centric UI/UX Design professional with 6 years creating elegant interfaces using Figma and Adobe XD backed by comprehensive user research. Portfolio includes designs that improved conversion rates by 60% and reduced support tickets by 45% through intuitive interaction patterns."
+  },
+  {
+    "input": "Rewrite professionally: Collaborated with product team using Python, Flask, React",
+    "output": "Partnered closely with product managers and designers to develop full-stack features using Python Flask backend and React frontend, delivering 15+ user-facing capabilities that increased feature adoption by 55% and improved user satisfaction scores by 28%"
+  },
+  {
+    "input": "Rewrite professionally: Troubleshot production issues using Datadog, Splunk, PagerDuty",
+    "output": "Spearheaded production incident response using Datadog monitoring, Splunk log analysis, and PagerDuty alerting, reducing mean time to resolution (MTTR) from 45 minutes to 12 minutes and decreasing critical incidents by 60% year-over-year"
+  },
+  {
+    "input": "Rewrite professionally: Implemented caching strategy using Redis, Memcached, CDN",
+    "output": "Designed and deployed multi-tier caching architecture utilizing Redis for application cache, Memcached for session storage, and CDN for static assets, achieving 85% cache hit rate and reducing database load by 70% while improving page load times by 65%"
+  },
+  {
+    "input": "Rewrite professionally: Mentored junior developers using pair programming, code reviews, workshops",
+    "output": "Cultivated technical excellence across team by mentoring 5 junior developers through structured pair programming sessions, thorough code reviews, and bi-weekly technical workshops, accelerating their productivity by 80% and reducing onboarding time from 3 months to 6 weeks"
+  },
+  {
+    "input": "Rewrite professionally: Conducted A/B testing using Google Optimize, Mixpanel, SQL",
+    "output": "Executed data-driven experimentation program using Google Optimize for test deployment, Mixpanel for event tracking, and SQL for statistical analysis, running 25+ A/B tests that cumulatively improved conversion funnel by 42% and increased revenue by $800K annually"
   }
 ]
