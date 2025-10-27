@@ -1,25 +1,17 @@
-# Install required packages
-# !pip install transformers torch sentencepiece google-generativeai -q
-
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 import google.generativeai as genai
 import json
 
-# Load FLAN-T5 model
 print("Loading FLAN-T5-Large model...")
 model_path = "jain05vaibhav/flan-t5-fine-tuned-resume-stable"
 tokenizer = T5Tokenizer.from_pretrained(model_path)
 model = T5ForConditionalGeneration.from_pretrained(model_path)
 print("✅ Model loaded successfully!")
 
-# Configure Gemini API
-GEMINI_API_KEY = "AIzaSyDy7FQb-PL_2_FP75C6PWtyJjFkdhkfgR4"  # Replace with your actual API key
+GEMINI_API_KEY = "AIzaSyDy7FQb-PL_2_FP75C6PWtyJjFkdhkfgR4"  
 genai.configure(api_key=GEMINI_API_KEY)
-gemini_model = genai.GenerativeModel('gemini-2.5-flash')  # Updated model name
+gemini_model = genai.GenerativeModel('gemini-2.5-flash')  
 
-# ============================================================================
-# AI FUNCTIONS - OPTIMIZED FOR YOUR TRAINING DATASET
-# ============================================================================
 
 def extract_keywords_from_job(job_description):
     """Extract important keywords from job description"""
@@ -181,7 +173,6 @@ def extract_and_validate_json(response_text, expected_length=None):
 
 def tailor_resume_experience(experience_text):
     """Rewrite experience bullet - OPTIMIZED for your training dataset format"""
-    # Your dataset format: "Rewrite professionally: [text] using [tech]"
     prompt = f"""Rewrite professionally: {experience_text}
 
 """
@@ -203,7 +194,6 @@ def tailor_resume_experience(experience_text):
 
 def tailor_project_description(project_name, project_tech):
     """Enhance project description - OPTIMIZED for your training dataset format"""
-    # Your dataset format: "Enhance project: [Name] using [tech1], [tech2]"
     prompt = f"""Enhance project: {project_name} using {project_tech}
 
 Enhanced description:"""
@@ -225,7 +215,6 @@ Enhanced description:"""
 
 def generate_professional_summary(role, experience_count, top_skills):
     """Generate professional summary - OPTIMIZED for your training dataset format"""
-    # Your dataset format: "Create professional summary: [Role], [years] years, [skill1], [skill2]"
     skills_str = ", ".join(top_skills[:5])
 
     prompt = f"""Create professional summary: {role}, {experience_count} years, {skills_str}
@@ -267,23 +256,19 @@ def generate_tailored_resume(job_description, personal_info, education, experien
 
     print("🚀 Starting resume generation...")
 
-    # Extract keywords
     print("\n1. Extracting keywords from job description...")
     keywords = extract_keywords_from_job(job_description)
     keywords_list = [k.strip() for k in keywords.split(",") if k.strip()]
     print(f"   Found {len(keywords_list)} keywords: {keywords_list}")
 
-    # Reorder skills using Gemini API
     print(f"\n2. Reordering {len(skills)} skills with Gemini...")
     reordered_skills = reorder_skills_by_relevance(skills, job_description)
     print(f"   ✅ Skills reordered")
 
-    # Filter and rank relevant projects using Gemini API (returns ALL matching)
     print(f"\n3. Filtering and ranking {len(projects)} projects with Gemini...")
     relevant_projects = sort_projects_by_relevance(projects, job_description)
     print(f"   ✅ Selected {len(relevant_projects)} relevant projects from {len(projects)} total")
 
-    # Generate professional summary
     print("\n4. Generating professional summary...")
     first_role = "Professional"
     if experience and len(experience) > 0:
@@ -292,7 +277,6 @@ def generate_tailored_resume(job_description, personal_info, education, experien
     professional_summary = generate_professional_summary(first_role, len(experience), reordered_skills)
     print(f"   ✅ Summary generated")
 
-    # Tailor experience bullets
     print("\n5. Tailoring experience bullets...")
     tailored_experience = []
     for exp in experience:
@@ -310,7 +294,6 @@ def generate_tailored_resume(job_description, personal_info, education, experien
         })
     print(f"   ✅ Experience tailored")
 
-    # Tailor project descriptions (for ALL relevant projects)
     print("\n6. Tailoring project descriptions...")
     tailored_projects = []
     for project in relevant_projects:
@@ -328,7 +311,6 @@ def generate_tailored_resume(job_description, personal_info, education, experien
         })
     print(f"   ✅ Projects tailored")
 
-    # Calculate match score
     match_score = 0
     if keywords_list and reordered_skills:
         matched = sum(1 for k in keywords_list if any(k.lower() in s.lower() for s in reordered_skills))
