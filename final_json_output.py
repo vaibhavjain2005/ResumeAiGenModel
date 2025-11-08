@@ -1,6 +1,7 @@
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 import google.generativeai as genai
 import json
+from typing import Dict, List, Union, Any
 
 
 model_path = "jain05vaibhav/flan-t5-resume-further-trained"
@@ -190,8 +191,28 @@ def generate_professional_summary(role, experience_count, top_skills):
 
 
 
-def generate_tailored_resume(job_description, personal_info, education, experience, projects, skills):
-    """Generates full AI-tailored resume"""
+def generate_tailored_resume(
+    job_description: str,
+    personal_info: Dict[str, str],
+    education: List[Dict[str, str]],
+    experience: List[Dict[str, Union[str, List[str]]]],
+    projects: List[Dict[str, str]],
+    skills: List[str]
+) -> Dict[str, Any]:
+    """
+    Generates full AI-tailored resume with type hints and validation
+    
+    Args:
+        job_description (str): The job description to tailor the resume for
+        personal_info (Dict[str, str]): Personal information (name, email, phone)
+        education (List[Dict[str, str]]): List of education entries
+        experience (List[Dict[str, Union[str, List[str]]]]): List of experience entries
+        projects (List[Dict[str, str]]): List of project entries
+        skills (List[str]): List of skills
+        
+    Returns:
+        Dict[str, Any]: The generated resume data
+    """
     print("🚀 Starting resume generation...")
 
    
@@ -262,47 +283,6 @@ def generate_tailored_resume(job_description, personal_info, education, experien
     return resume_data
 
 
-# ==============================
-# Example usage
-# ==============================
-
+# Module is meant to be imported
 if __name__ == "__main__":
-    job_desc = """
-    We are looking for a Python Developer with experience in Machine Learning and NLP.
-    Required skills: Python, TensorFlow, PyTorch, NLP, API development, Flask.
-    """
-
-    personal = {
-        "name": "John Doe",
-        "email": "john@example.com",
-        "phone": "+1234567890"
-    }
-
-    edu = [
-        {"degree": "Bachelor of Computer Science", "university": "Example University", "year": "2020"}
-    ]
-
-    # Paragraph-style experience (text box input)
-    exp = [
-        {
-            "title": "Software Developer",
-            "company": "Tech Corp",
-            "duration": "2020-2023",
-            "description": "Developed and deployed web applications using Python and Flask. Implemented machine learning models for data analysis and optimized NLP pipelines."
-        }
-    ]
-
-    proj = [
-        {"name": "NLP Chatbot", "technologies": "Python, TensorFlow, NLP", "description": "Built an intelligent chatbot using NLP techniques"},
-        {"name": "E-commerce Website", "technologies": "JavaScript, React, Node.js", "description": "Created a full-stack e-commerce platform"},
-        {"name": "ML Image Classifier", "technologies": "Python, PyTorch, CNN", "description": "Developed image classification system using deep learning"}
-    ]
-
-    skills = ["JavaScript", "Python", "React", "TensorFlow", "PyTorch", "NLP", "Flask", "Docker", "AWS", "SQL"]
-
-    result = generate_tailored_resume(job_desc, personal, edu, exp, proj, skills)
-
-    print("\n" + "="*70)
-    print("GENERATED RESUME DATA:")
-    print("="*70)
-    print(json.dumps(result, indent=2))
+    print("This module is intended to be imported. Run the API server or tests instead.")
