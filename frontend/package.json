@@ -33,6 +33,7 @@
     "@heroui/theme": "^2.4.23",
     "@tailwindcss/vite": "^4.1.17",
     "framer-motion": "^12.23.24",
+    "lucide-react": "^0.553.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.5",

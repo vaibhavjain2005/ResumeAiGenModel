@@ -8,3 +8,10 @@
 /* Note: You may need to change the path to fit your project structure */
 @source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 @custom-variant dark (&:is(.dark *));
+
+
+
+body {
+    background: radial-gradient(at 53% 44%, #000f3d 0px, transparent 50%), radial-gradient(at 78% 63%, #383838 0px, transparent 50%), radial-gradient(at 90% 21%, #000000 0px, transparent 50%), radial-gradient(at 60% 14%, #520038 0px, transparent 50%), #0d0d0d;
+}
+

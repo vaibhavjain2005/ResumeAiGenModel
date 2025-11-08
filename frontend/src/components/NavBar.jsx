@@ -1,6 +1,8 @@
 import React from 'react'
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@heroui/react";
-import { Card, CardBody, CardFooter } from "@heroui/react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button } from "@heroui/react";
+import { Link } from 'react-router-dom';
+import Logo from './Logo';
+
 
 export const AcmeLogo = () => {
     return (
@@ -22,9 +24,7 @@ function NavBar() {
             <NavbarContent className="hidden sm:flex gap-4" >
 
                 <NavbarItem isActive className='w-full text-center' >
-                    <Link aria-current="page" href="#" >
-                        Resume Chef.
-                    </Link>
+                    <Logo />
                 </NavbarItem>
 
             </NavbarContent>

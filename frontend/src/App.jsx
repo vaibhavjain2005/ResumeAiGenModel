@@ -10,7 +10,6 @@ function App() {
 
   return (
     <>
-      <NavBar />
       <div className="flex flex-col justify-center items-center h-dvh">
         <Card className="w-11/12 h-9/12 text-center bg-[url('https://images.unsplash.com/photo-1654198340681-a2e0fc449f1b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470')] bg-cover bg-center " >
           <div class="absolute inset-0 bg-black/50"></div>

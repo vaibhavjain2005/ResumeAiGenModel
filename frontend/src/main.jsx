@@ -5,12 +5,17 @@ import './index.css'
 import { HeroUIProvider } from "@heroui/react";
 import App from './App.jsx'
 import DataFormPage from './components/DataFormPage.jsx';
+import MainLayout from './layouts/MainLayout.jsx';
+
+
+
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<HeroUIProvider><App /></HeroUIProvider>} />
-      <Route path="/get-started" element={<DataFormPage />} />
+      <Route element={<MainLayout />}><Route path="/" element={<HeroUIProvider><App /></HeroUIProvider>} />
+        <Route path="/get-started" element={<DataFormPage />} /></Route>
+
     </Routes>
   </BrowserRouter>
 
