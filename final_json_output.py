@@ -2,9 +2,6 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration
 import google.generativeai as genai
 import json
 
-# ==============================
-# Model Initialization
-# ==============================
 
 model_path = "jain05vaibhav/flan-t5-resume-further-trained"
 tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-base")
@@ -16,9 +13,6 @@ genai.configure(api_key=GEMINI_API_KEY)
 gemini_model = genai.GenerativeModel('gemini-2.5-flash')
 
 
-# ==============================
-# Utility Functions
-# ==============================
 
 def extract_keywords_from_job(job_description):
     """Extract important keywords from job description using T5"""
@@ -75,9 +69,6 @@ def extract_and_validate_json(response_text, expected_length=None):
         return None
 
 
-# ==============================
-# AI-Powered Enhancement Functions
-# ==============================
 
 def reorder_skills_by_relevance(skills, job_description):
     """Use Gemini API to reorder skills based on job description relevance"""
@@ -198,30 +189,26 @@ def generate_professional_summary(role, experience_count, top_skills):
     return summary.strip()
 
 
-# ==============================
-# Main Resume Generator
-# ==============================
 
 def generate_tailored_resume(job_description, personal_info, education, experience, projects, skills):
     """Generates full AI-tailored resume"""
     print("🚀 Starting resume generation...")
 
-    # 1️⃣ Extract keywords
+   
     keywords = extract_keywords_from_job(job_description)
     keywords_list = [k.strip() for k in keywords.split(",") if k.strip()]
     print(f"✅ Extracted {len(keywords_list)} keywords: {keywords_list}")
 
-    # 2️⃣ Reorder skills
     reordered_skills = reorder_skills_by_relevance(skills, job_description)
 
-    # 3️⃣ Sort projects by relevance (with fallback)
+   
     relevant_projects = sort_projects_by_relevance(projects, job_description)
 
-    # 4️⃣ Generate professional summary
+  
     first_role = experience[0].get("title", "Professional") if experience else "Professional"
     professional_summary = generate_professional_summary(first_role, len(experience), reordered_skills)
 
-    # 5️⃣ Tailor experiences (paragraph or bullets)
+  
     tailored_experience = []
     for exp in experience:
         if "description" in exp and isinstance(exp["description"], str):
@@ -237,7 +224,7 @@ def generate_tailored_resume(job_description, personal_info, education, experien
             tailored_experience.append(exp)
     print("✅ Experience tailored")
 
-    # 6️⃣ Tailor project descriptions
+    
     tailored_projects = []
     for p in relevant_projects:
         tech = p.get("technologies", "")
@@ -246,11 +233,11 @@ def generate_tailored_resume(job_description, personal_info, education, experien
         tailored_projects.append({**p, "description": improved})
     print("✅ Projects tailored")
 
-    # 7️⃣ Calculate match score
+  
     matched = sum(1 for k in keywords_list if any(k.lower() in s.lower() for s in reordered_skills))
     match_score = round((matched / len(keywords_list)) * 100, 1) if keywords_list else 0
 
-    # 8️⃣ Final resume output
+   
     resume_data = {
         "success": True,
         "keywords_extracted": keywords_list,
