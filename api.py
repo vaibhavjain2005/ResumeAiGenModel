@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware  # ✅ Import CORS middleware
 from pydantic import BaseModel, Field
 from typing import List, Optional
 import uvicorn
@@ -10,6 +11,18 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# ✅ Allow CORS for frontend (React, etc.)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or specify your frontend like ["http://localhost:5173"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# =========================
+# Request Models
+# =========================
 class Education(BaseModel):
     degree: str
     university: str
@@ -40,6 +53,9 @@ class ResumeRequest(BaseModel):
     projects: List[Project]
     skills: List[str] = Field(..., description="List of skills")
 
+# =========================
+# Endpoint
+# =========================
 @app.post("/generate-resume")
 async def generate_resume(request: ResumeRequest):
     try:
@@ -55,5 +71,9 @@ async def generate_resume(request: ResumeRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
+# =========================
+# Run Server
+# =========================
 if __name__ == "__main__":
     uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)

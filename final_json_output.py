@@ -2,18 +2,16 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration
 import google.generativeai as genai
 import json
 from typing import Dict, List, Union, Any
-import torch
-print(torch.cuda.is_available())
-print(torch.cuda.get_device_name(0))
+
+
 # ==============================
 # 🔧 Model Initialization
 # ==============================
-device="cuda" 
 model_path = "jain05vaibhav/t5-further-finer"
 tokenizer = T5Tokenizer.from_pretrained(model_path)
 model = T5ForConditionalGeneration.from_pretrained(model_path)
 print("✅ T5 model loaded successfully")
-model=model.to(device)
+
 # Gemini configuration
 GEMINI_API_KEY = "AIzaSyCvabMU_CgDDHuJCSCE1pC65Sw4aNouBSY"
 genai.configure(api_key=GEMINI_API_KEY)
@@ -33,19 +31,19 @@ def extract_and_validate_json(response_text, expected_length=None):
             parsed_json = json.loads(json_str)
 
             if not isinstance(parsed_json, list):
-                print("⚠ JSON validation failed: Not a list")
+                print("⚠️ JSON validation failed: Not a list")
                 return None
 
             if expected_length and len(parsed_json) != expected_length:
-                print(f"⚠ JSON validation warning: Expected {expected_length} items, got {len(parsed_json)}")
+                print(f"⚠️ JSON validation warning: Expected {expected_length} items, got {len(parsed_json)}")
 
             print(f"✅ JSON validated successfully: {parsed_json}")
             return parsed_json
         else:
-            print("⚠ JSON validation failed: No array found in response")
+            print("⚠️ JSON validation failed: No array found in response")
             return None
     except Exception as e:
-        print(f"⚠ JSON validation failed: {e}")
+        print(f"⚠️ JSON validation failed: {e}")
         return None
 
 
@@ -76,7 +74,7 @@ Important keywords:
         print(f"✅ Extracted {len(keywords)} keywords from Gemini: {keywords}")
         return keywords
     except Exception as e:
-        print(f"⚠ Error extracting keywords via Gemini: {e}")
+        print(f"⚠️ Error extracting keywords via Gemini: {e}")
         return []
 
 
@@ -113,7 +111,7 @@ Return ONLY the JSON array, no explanation.
             return reordered
         return skills
     except Exception as e:
-        print(f"⚠ Error in Gemini skill reordering: {e}")
+        print(f"⚠️ Error in Gemini skill reordering: {e}")
         return skills
 
 
@@ -135,8 +133,8 @@ def sort_projects_by_relevance(projects, job_description):
 And these projects:
 {projects_text}
 
-Return ONLY a JSON array with the indices (1-based) of projects that are RELEVANT and match the job description, 
-ordered by relevance (most relevant first). 
+Return ONLY a JSON array with the indices (1-based) of projects that are RELEVANT and match the job description,
+ordered by relevance (most relevant first).
 If no projects are relevant, return [].
 Return ONLY the JSON array, no explanation.
 """
@@ -147,17 +145,17 @@ Return ONLY the JSON array, no explanation.
         if ranking_indices is not None:
             relevant_projects = [projects[i - 1] for i in ranking_indices if 1 <= i <= len(projects)]
             if len(relevant_projects) == 0:
-                print("⚠ No relevant projects found — using all projects as fallback")
+                print("⚠️ No relevant projects found — using all projects as fallback")
                 return projects
 
             print(f"✅ Found {len(relevant_projects)} relevant projects")
             return relevant_projects
 
-        print("⚠ JSON validation failed — returning all projects as fallback")
+        print("⚠️ JSON validation failed — returning all projects as fallback")
         return projects
 
     except Exception as e:
-        print(f"⚠ Error in Gemini project filtering: {e}")
+        print(f"⚠️ Error in Gemini project filtering: {e}")
         return projects
 
 
@@ -167,7 +165,7 @@ Return ONLY the JSON array, no explanation.
 def tailor_resume_experience(experience_text):
     """Rewrite experience professionally using T5"""
     prompt = f"Rewrite professionally: {experience_text}"
-    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True).to(model.device)
+    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True)
     outputs = model.generate(
         **inputs, max_length=150, num_beams=4,
         no_repeat_ngram_size=2, early_stopping=True
@@ -179,7 +177,7 @@ def tailor_resume_experience(experience_text):
 def tailor_project_description(project_name, project_tech):
     """Enhance project description"""
     prompt = f"Enhance project: {project_name} using {project_tech}\nEnhanced description:"
-    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True).to(model.device)
+    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True)
     outputs = model.generate(**inputs, max_length=200, num_beams=4, no_repeat_ngram_size=2, early_stopping=True)
     improved = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return improved.strip() if len(improved) > 15 else f"Project using {project_tech}"
@@ -190,7 +188,7 @@ def generate_professional_summary(role, experience_count, top_skills):
     skills_str = ", ".join(top_skills[:5])
     prompt = f"Create professional summary: {role}, {experience_count} years, {skills_str}\nProfessional summary:"
 
-    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True).to(model.device)
+    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True)
     outputs = model.generate(
         **inputs, max_length=120, num_beams=4,
         no_repeat_ngram_size=2, early_stopping=True
