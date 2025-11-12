@@ -1,5 +1,4 @@
 # ResumeAiGenModel
-[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/vaibhavjain2005/ResumeAiGenModel)
 
 An intelligent resume generator that tailors your resume to a specific job description using a dual AI model approach. This project leverages a fine-tuned T5 model for creative text generation and the Gemini API for keyword extraction and relevance ranking, all served via a FastAPI backend with a React frontend.
 
