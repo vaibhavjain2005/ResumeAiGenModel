@@ -2,75 +2,87 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration
 import google.generativeai as genai
 import json
 from typing import Dict, List, Union, Any
-
-
-model_path = "jain05vaibhav/flan-t5-resume-further-trained"
-tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-base")
+import torch
+print(torch.cuda.is_available())
+print(torch.cuda.get_device_name(0))
+# ==============================
+# 🔧 Model Initialization
+# ==============================
+device="cuda" 
+model_path = "jain05vaibhav/t5-further-finer"
+tokenizer = T5Tokenizer.from_pretrained(model_path)
 model = T5ForConditionalGeneration.from_pretrained(model_path)
-print("✅ Model loaded successfully")
-
+print("✅ T5 model loaded successfully")
+model=model.to(device)
+# Gemini configuration
 GEMINI_API_KEY = "AIzaSyCvabMU_CgDDHuJCSCE1pC65Sw4aNouBSY"
 genai.configure(api_key=GEMINI_API_KEY)
-gemini_model = genai.GenerativeModel('gemini-2.5-flash')
+gemini_model = genai.GenerativeModel("gemini-2.5-flash")
 
 
-
-def extract_keywords_from_job(job_description):
-    """Extract important keywords from job description using T5"""
-    prompt = f"""Extract key skills and technologies from this job posting. 
-List only the most important ones as comma-separated keywords.
-
-Job Description: {job_description}
-
-Important keywords:"""
-
-    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True)
-    outputs = model.generate(
-        **inputs,
-        max_length=100,
-        num_beams=4,
-        no_repeat_ngram_size=2,
-        early_stopping=True
-    )
-    keywords = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    return keywords.strip()
-
-
+# ==============================
+# 🧠 Utility Functions
+# ==============================
 def extract_and_validate_json(response_text, expected_length=None):
     """Extract and validate JSON array from Gemini response"""
     try:
-        if '[' in response_text and ']' in response_text:
-            start = response_text.find('[')
-            end = response_text.rfind(']') + 1
+        if "[" in response_text and "]" in response_text:
+            start = response_text.find("[")
+            end = response_text.rfind("]") + 1
             json_str = response_text[start:end]
             parsed_json = json.loads(json_str)
 
             if not isinstance(parsed_json, list):
-                print("⚠️ JSON validation failed: Not a list")
-                return None
-
-            if not all(isinstance(x, int) for x in parsed_json):
-                print("⚠️ JSON validation failed: Not all elements are integers")
+                print("⚠ JSON validation failed: Not a list")
                 return None
 
             if expected_length and len(parsed_json) != expected_length:
-                print(f"⚠️ JSON validation warning: Expected {expected_length} items, got {len(parsed_json)}")
-
-            if not all(x > 0 for x in parsed_json):
-                print("⚠️ JSON validation failed: Contains non-positive indices")
-                return None
+                print(f"⚠ JSON validation warning: Expected {expected_length} items, got {len(parsed_json)}")
 
             print(f"✅ JSON validated successfully: {parsed_json}")
             return parsed_json
         else:
-            print("⚠️ JSON validation failed: No array found in response")
+            print("⚠ JSON validation failed: No array found in response")
             return None
     except Exception as e:
-        print(f"⚠️ JSON validation failed: {e}")
+        print(f"⚠ JSON validation failed: {e}")
         return None
 
 
+# ==============================
+# 🌟 Gemini Keyword Extraction
+# ==============================
+def extract_keywords_from_job(job_description):
+    """
+    Extract important keywords (skills, tools, technologies) from job description using Gemini.
+    Returns a list of keywords.
+    """
+    try:
+        prompt = f"""
+You are an expert technical recruiter.
+Extract the most important skills, tools, and technologies from the following job description.
+Return ONLY a comma-separated list of keywords (no explanation, no JSON).
 
+Job Description:
+{job_description}
+
+Important keywords:
+"""
+        response = gemini_model.generate_content(prompt)
+        text = response.text.strip()
+
+        # Split by comma or newline
+        keywords = [k.strip() for k in text.replace("\n", ",").split(",") if k.strip()]
+        print(f"✅ Extracted {len(keywords)} keywords from Gemini: {keywords}")
+        return keywords
+    except Exception as e:
+        print(f"⚠ Error extracting keywords via Gemini: {e}")
+        return []
+
+
+# ==============================
+# 🔮 Gemini Skill & Project Ranking
+# ==============================
 def reorder_skills_by_relevance(skills, job_description):
     """Use Gemini API to reorder skills based on job description relevance"""
     if not skills:
@@ -84,11 +96,11 @@ def reorder_skills_by_relevance(skills, job_description):
 And these skills:
 {skills_text}
 
-Reorder ALL skills by relevance to the job description. 
+Reorder ALL skills by relevance to the job description.
 Return ONLY a JSON array with the indices (1-based) of skills in order of relevance.
-For example: [3, 1, 5, ...]
-Include ALL skills in the output, just reordered by relevance.
-Return ONLY the JSON array, no explanation."""
+Example: [3, 1, 5, 2, 4]
+Return ONLY the JSON array, no explanation.
+"""
 
         response = gemini_model.generate_content(prompt)
         ranking_indices = extract_and_validate_json(response.text.strip(), expected_length=len(skills))
@@ -100,9 +112,8 @@ Return ONLY the JSON array, no explanation."""
                     reordered.append(s)
             return reordered
         return skills
-
     except Exception as e:
-        print(f"⚠️ Error in Gemini skill reordering: {e}")
+        print(f"⚠ Error in Gemini skill reordering: {e}")
         return skills
 
 
@@ -127,35 +138,36 @@ And these projects:
 Return ONLY a JSON array with the indices (1-based) of projects that are RELEVANT and match the job description, 
 ordered by relevance (most relevant first). 
 If no projects are relevant, return [].
-Return ONLY the JSON array, no explanation."""
+Return ONLY the JSON array, no explanation.
+"""
 
         response = gemini_model.generate_content(prompt)
-        ranking_indices = extract_and_validate_json(response.text.strip(), expected_length=None)
+        ranking_indices = extract_and_validate_json(response.text.strip())
 
         if ranking_indices is not None:
             relevant_projects = [projects[i - 1] for i in ranking_indices if 1 <= i <= len(projects)]
-
-            # 🧠 Fallback: If Gemini found no relevant projects, use all
             if len(relevant_projects) == 0:
-                print("⚠️ No relevant projects found — using all projects as fallback")
+                print("⚠ No relevant projects found — using all projects as fallback")
                 return projects
 
             print(f"✅ Found {len(relevant_projects)} relevant projects")
             return relevant_projects
 
-        print("⚠️ JSON validation failed — returning all projects as fallback")
+        print("⚠ JSON validation failed — returning all projects as fallback")
         return projects
 
     except Exception as e:
-        print(f"⚠️ Error in Gemini project filtering: {e}")
+        print(f"⚠ Error in Gemini project filtering: {e}")
         return projects
 
 
+# ==============================
+# ✨ T5 Text Enhancement
+# ==============================
 def tailor_resume_experience(experience_text):
     """Rewrite experience professionally using T5"""
     prompt = f"Rewrite professionally: {experience_text}"
-
-    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True)
+    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True).to(model.device)
     outputs = model.generate(
         **inputs, max_length=150, num_beams=4,
         no_repeat_ngram_size=2, early_stopping=True
@@ -167,7 +179,7 @@ def tailor_resume_experience(experience_text):
 def tailor_project_description(project_name, project_tech):
     """Enhance project description"""
     prompt = f"Enhance project: {project_name} using {project_tech}\nEnhanced description:"
-    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True)
+    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True).to(model.device)
     outputs = model.generate(**inputs, max_length=200, num_beams=4, no_repeat_ngram_size=2, early_stopping=True)
     improved = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return improved.strip() if len(improved) > 15 else f"Project using {project_tech}"
@@ -178,7 +190,7 @@ def generate_professional_summary(role, experience_count, top_skills):
     skills_str = ", ".join(top_skills[:5])
     prompt = f"Create professional summary: {role}, {experience_count} years, {skills_str}\nProfessional summary:"
 
-    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True)
+    inputs = tokenizer(prompt, return_tensors="pt", max_length=512, truncation=True).to(model.device)
     outputs = model.generate(
         **inputs, max_length=120, num_beams=4,
         no_repeat_ngram_size=2, early_stopping=True
@@ -190,7 +202,9 @@ def generate_professional_summary(role, experience_count, top_skills):
     return summary.strip()
 
 
-
+# ==============================
+# 🧾 Resume Generation Pipeline
+# ==============================
 def generate_tailored_resume(
     job_description: str,
     personal_info: Dict[str, str],
@@ -199,37 +213,23 @@ def generate_tailored_resume(
     projects: List[Dict[str, str]],
     skills: List[str]
 ) -> Dict[str, Any]:
-    """
-    Generates full AI-tailored resume with type hints and validation
-    
-    Args:
-        job_description (str): The job description to tailor the resume for
-        personal_info (Dict[str, str]): Personal information (name, email, phone)
-        education (List[Dict[str, str]]): List of education entries
-        experience (List[Dict[str, Union[str, List[str]]]]): List of experience entries
-        projects (List[Dict[str, str]]): List of project entries
-        skills (List[str]): List of skills
-        
-    Returns:
-        Dict[str, Any]: The generated resume data
-    """
+
     print("🚀 Starting resume generation...")
 
-   
-    keywords = extract_keywords_from_job(job_description)
-    keywords_list = [k.strip() for k in keywords.split(",") if k.strip()]
-    print(f"✅ Extracted {len(keywords_list)} keywords: {keywords_list}")
+    # ✅ Step 1: Extract keywords using Gemini
+    keywords_list = extract_keywords_from_job(job_description)
 
+    # ✅ Step 2: Reorder skills using Gemini
     reordered_skills = reorder_skills_by_relevance(skills, job_description)
 
-   
+    # ✅ Step 3: Sort projects by relevance using Gemini
     relevant_projects = sort_projects_by_relevance(projects, job_description)
 
-  
+    # ✅ Step 4: Generate professional summary using T5
     first_role = experience[0].get("title", "Professional") if experience else "Professional"
     professional_summary = generate_professional_summary(first_role, len(experience), reordered_skills)
 
-  
+    # ✅ Step 5: Tailor experiences
     tailored_experience = []
     for exp in experience:
         if "description" in exp and isinstance(exp["description"], str):
@@ -245,7 +245,7 @@ def generate_tailored_resume(
             tailored_experience.append(exp)
     print("✅ Experience tailored")
 
-    
+    # ✅ Step 6: Enhance project descriptions
     tailored_projects = []
     for p in relevant_projects:
         tech = p.get("technologies", "")
@@ -254,11 +254,11 @@ def generate_tailored_resume(
         tailored_projects.append({**p, "description": improved})
     print("✅ Projects tailored")
 
-  
+    # ✅ Step 7: Compute match score
     matched = sum(1 for k in keywords_list if any(k.lower() in s.lower() for s in reordered_skills))
     match_score = round((matched / len(keywords_list)) * 100, 1) if keywords_list else 0
 
-   
+    # ✅ Step 8: Final resume structure
     resume_data = {
         "success": True,
         "keywords_extracted": keywords_list,
@@ -275,7 +275,7 @@ def generate_tailored_resume(
             "total_projects_submitted": len(projects),
             "projects_selected": len(tailored_projects),
             "projects_rejected": len(projects) - len(tailored_projects),
-            "note": "Relevant projects selected by Gemini; fallback used if none found."
+            "note": "Keywords extracted using Gemini; relevant projects selected by Gemini."
         }
     }
 
@@ -283,6 +283,8 @@ def generate_tailored_resume(
     return resume_data
 
 
-# Module is meant to be imported
+# ==============================
+# 🧩 Entry Point
+# ==============================
 if __name__ == "__main__":
-    print("This module is intended to be imported. Run the API server or tests instead.")
+    print("This module is intended to be imported. Run API server or tests instead.")
