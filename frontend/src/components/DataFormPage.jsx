@@ -76,7 +76,7 @@ function DataFormPage() {
         };
 
         try {
-            // 🔥 Replace with your backend endpoint
+          
             const response = await fetch('http://localhost:8000/generate-resume', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -101,7 +101,7 @@ function DataFormPage() {
                 <div className='flex w-8/12 justify-start'>
                     <Link to={'/'} className="flex items-center gap-2 text-white hover:text-gray-300">
                         <ArrowLeft className=" text-white" />
-                        Back to Home
+                        <p className='bg-gray-100 text-black p-1 rounded-2xl px-4'>Back to Home</p>
                     </Link>
                 </div>
             </div>

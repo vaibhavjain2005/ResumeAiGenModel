@@ -166,3 +166,47 @@ The `google/flan-t5-base` model was fine-tuned for text enhancement tasks (e.g.,
 -   **Training Script**: `flan-t5-resume-model-training-stable.py`
 -   **Training Data**: Located in the `fine_tuning_data/` directory. The data consists of `input`/`output` pairs designed to teach the model how to professionally rewrite resume content.
 -   **Fine-tuned Model**: The trained model is available on Hugging Face at [jain05vaibhav/t5-further-finer](https://huggingface.co/jain05vaibhav/t5-further-finer).
+
+
+
+### Key Visual Insights
+
+Below are the major metrics and visualizations tracked during training and evaluation:
+
+#### 1. ROUGE-L and ROUGE-1 Progress per Epoch
+
+![ROUGE Metrics](https://github.com/vaibhavjain2005/ResumeAiGenModel/blob/main/metrics/1.jpg?raw=true)
+
+> *This plot shows the improvement in ROUGE-1 and ROUGE-L scores across epochs, indicating the model’s growing ability to generate more semantically aligned text.*
+
+#### 2. Training Loss, Validation Loss, and ROUGE Scores
+
+![Training and Validation Metrics](https://github.com/vaibhavjain2005/ResumeAiGenModel/blob/main/metrics/2.jpg?raw=true)
+
+> *Here, both loss curves and ROUGE metrics are shown together to visualize the trade-off between training loss reduction and language generation quality.*
+
+#### 3. Training and Validation Loss Over Time
+
+![Loss Curves](https://github.com/vaibhavjain2005/ResumeAiGenModel/blob/main/metrics/3.jpg?raw=true)
+
+> *Smooth downward trends indicate successful convergence with minimal overfitting, thanks to FP32 training stability.*
+
+#### 4. Final Evaluation Metrics
+
+![Evaluation Metrics](https://github.com/vaibhavjain2005/ResumeAiGenModel/blob/main/metrics/4.jpg?raw=true)
+
+> *Final evaluation report summarizing average loss, ROUGE scores, and other metrics confirming the model’s readiness for deployment.*
+
+---
+
+###  Summary of the Training Script
+
+The fine-tuning script follows a clear, stable workflow:
+
+1. **Data Loading** – Reads `train_data.json` and `val_data.json`, both consisting of parallel `input` and `output` pairs for resume enhancement tasks.
+2. **Preprocessing** – Tokenizes inputs and targets using the T5 tokenizer with truncation and padding disabled for efficient sequence handling.
+3. **Trainer Setup** – Configured using `Trainer` and `TrainingArguments` with checkpointing, evaluation steps, and Adafactor optimization.
+4. **Training Loop** – Runs for 8 epochs, logging progress every 50 steps and saving checkpoints every 100 steps.
+5. **Evaluation and Testing** – Prints final evaluation results (loss, ROUGE metrics) and performs a test inference for quick qualitative validation.
+
+This approach balances **stability, efficiency, and performance**, ensuring the model can consistently produce high-quality, professional resume content tailored to any job description.

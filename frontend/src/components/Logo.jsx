@@ -7,8 +7,10 @@ function Logo({ size }) {
                 <div className='flex flex-col justify-center'>
                     <p style={{ fontFamily: '"Momo Signature", cursive' }} className={`text-${size}`}>Resume</p>
                 </div>
-
-                <p className='font-Inter text-xl'>Chef.</p></div>
+                <div className='flex flex-col justify-center'>
+                    <p className='font-Inter text-xl'>Chef.</p>
+                </div>
+                </div>
 
         </Link></div>
     )
