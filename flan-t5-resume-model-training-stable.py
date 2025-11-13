@@ -1,10 +1,3 @@
-"""
-T5 Fine-Tuning Script for Resume Generation (Stable Version)
-Optimized for Google Colab Free Tier
-- FP32 precision for stability
-- Gradient accumulation
-- Safe checkpoints and NaN protection
-"""
 
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -45,7 +38,7 @@ torch.autograd.set_detect_anomaly(False)
 
 
 # config and model loading
-MODEL_NAME = "google/flan-t5-base"       #chosen because the most stable after repeated training 
+MODEL_NAME = "google/t5v1_1"       #chosen because the most stable after repeated training 
 OUTPUT_DIR = "./flan-t5-base-resume-finetuned-stable"
 BATCH_SIZE = 2
 MAX_INPUT_LENGTH = 128
