@@ -7,7 +7,7 @@ An intelligent resume generator that tailors your resume to a specific job descr
 - **AI-Powered Tailoring**: Dynamically adapts your resume content to match the requirements of a target job description.
 - **Dual-AI Architecture**:
     - **Google Gemini**: Extracts keywords, reorders skills, and filters projects based on job relevance.
-    - **Fine-tuned Flan-T5**: Rewrites experience bullets, enhances project descriptions, and generates impactful professional summaries.
+    - **Fine-tuned T5v1_v1**: Rewrites experience bullets, enhances project descriptions, and generates impactful professional summaries.
 - **Job Match Score**: Calculates a percentage score indicating how well your resume aligns with the job description's keywords.
 - **Interactive UI**: A modern React and Vite frontend with HeroUI components for a smooth user experience.
 - **PDF Export**: Download the AI-generated resume as a clean, professionally formatted PDF.
@@ -161,9 +161,9 @@ The primary endpoint for generating a resume.
 
 ## Model Training
 
-The `google/flan-t5-base` model was fine-tuned for text enhancement tasks (e.g., rewriting experience bullets, generating summaries).
+The `google/t5v1_1` model was fine-tuned for text enhancement tasks (e.g., rewriting experience bullets, generating summaries).
 
--   **Training Script**: `flan-t5-resume-model-training-stable.py`
+-   **Training Script**: `t5v1_1-resume-model-training-stable.py`
 -   **Training Data**: Located in the `fine_tuning_data/` directory. The data consists of `input`/`output` pairs designed to teach the model how to professionally rewrite resume content.
 -   **Fine-tuned Model**: The trained model is available on Hugging Face at [jain05vaibhav/t5-further-finer](https://huggingface.co/jain05vaibhav/t5-further-finer).
 
