@@ -27,6 +27,8 @@ The application operates through a seamless flow between the frontend and a powe
 5.  **Response and Rendering**: The backend calculates a match score and returns a final JSON object containing the fully tailored resume. The React frontend receives this data and renders it in a clean, readable format.
 6.  **PDF Generation**: The user can then download the generated resume as a PDF, created on the client-side using `jsPDF` and `html2canvas`.
 
+![Work Flow Diagram](https://github.com/vaibhavjain2005/ResumeAiGenModel/blob/main/metrics/diagram-export-11-13-2025-10_43_12-AM.png?raw=true)
+
 ## Tech Stack
 
 | Component      | Technology                                                                                                   |
